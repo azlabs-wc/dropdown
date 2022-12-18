@@ -95,6 +95,9 @@
     ]
   },
   "customElements": "custom-elements.json",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/@azlabs-wc"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/azlabs-wc/dropdown.git"
