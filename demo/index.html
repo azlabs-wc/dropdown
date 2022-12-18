@@ -1,29 +1,87 @@
 <!doctype html>
 <html lang="en-GB">
+
 <head>
   <meta charset="utf-8">
   <style>
+    *,
+    body,
+    :host {
+      font-size: calc(10px + 2vmin);
+      color: #1a2b42;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
     body {
       background: #fafafa;
     }
+
+    .page-title {
+      text-align: center;
+      font-size: 3rem;
+      line-height: 1.2rem;
+      margin-top: 4rem;
+      margin-bottom: 2rem;
+    }
+
+    .output-section {
+      display: flex;
+      align-items: center;
+      align-content: center;
+    }
+
+    .preview {
+      width: 480px;
+    }
   </style>
 </head>
-<body>
-  <div id="demo"></div>
 
+<body>
+  <div class="page-title">Azl Dropdown</div>
+  <div class="output-section">
+    <div class="preview">
+      <div id="demo"></div>
+    </div>
+  </div>
   <script type="module">
     import { html, render } from 'lit';
-    import '../dist/src/azl-dropdown.js';
+    import '../dist/azl-dropdown.js';
+    import { chevronIcon } from '../dist/lib/Icon.js';
 
-    const title = 'Hello owc World!';
     render(
       html`
-        <azl-dropdown .title=${title}>
-          some light-dom
-        </azl-dropdown>
+          <azl-dropdown orientation="left" .items=${["Payer avec TMoney", "Payer avec MoovMoney", "Payer avec OrangeMoney"]}>
+            <h4 class="title" slot="dropdown-button">
+              Payer avec CorisMoney
+              ${chevronIcon(20, 20)}
+            </h4>
+          </azl-dropdown>
+
+
+          <azl-dropdown orientation="right" .items=${["Payer avec TMoney", "Payer avec MoovMoney", "Payer avec OrangeMoney"]}>
+            <h4 class="title" slot="dropdown-button">
+              Payer avec CorisMoney
+              ${chevronIcon(20, 20)}
+            </h4>
+          </azl-dropdown>
+
+          <azl-dropdown animation="translateX" orientation="left" .items=${["Payer avec TMoney", "Payer avec MoovMoney", "Payer avec OrangeMoney"]}>
+            <h4 class="title" slot="dropdown-button">
+              Payer avec CorisMoney
+              ${chevronIcon(20, 20)}
+            </h4>
+          </azl-dropdown>
+
+          <azl-dropdown animation="translateX" orientation="right" .items=${["Payer avec TMoney", "Payer avec MoovMoney", "Payer avec OrangeMoney"]}>
+            <h4 class="title" slot="dropdown-button">
+              Payer avec CorisMoney
+              ${chevronIcon(20, 20)}
+            </h4>
+          </azl-dropdown>
       `,
       document.querySelector('#demo')
     );
   </script>
 </body>
+
 </html>

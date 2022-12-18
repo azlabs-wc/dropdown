@@ -6,7 +6,7 @@ export const styles = css`
     perspective: 1000px;
     position: relative;
     display: block;
-    z-index: 100;
+    z-index: 0;
   }
 
   @media (max-device-width: 425px) {
@@ -36,8 +36,10 @@ export const styles = css`
 
   .dropdown:hover .dropdown-menu,
   .dropdown:hover .dropdown-menu .dropdown-item,
+  .dropdown:hover .dropdown-menu azl-dropdown-menu-item,
   .dropdown:hover .dropdown-menu ::slotted(*) {
     display: block;
+    z-index: 100;
   }
 
   .dropdown:hover .dropdown-menu ::slotted(*),
@@ -50,13 +52,14 @@ export const styles = css`
     display: none;
     opacity: 0;
     position: absolute;
-    top: 80%;
+    top: 70%;
     min-width: 320px;
     border: var(--dropdown-border-width, 0.05rem) solid
       var(--dropdown-border-color, #eeeeee);
-    border-radius: 0.156rem;
-    box-shadow: 0.5px 0px 0px 0px var(--box-shadow-color, #f3f3f3);
+    border-radius: var(--dropdown-border-radius, 0.156rem);
+    box-shadow: 0.5px 0px 0px 0px var(--dropdown-box-shadow-color, #f3f3f3);
     background-color: var(--dropdown-bg-color, #fff);
+    z-index: 100;
   }
 
   .dropdown-menu.left {
@@ -68,6 +71,7 @@ export const styles = css`
   }
 
   .dropdown-menu .dropdown-item,
+  .dropdown-menu azl-dropdown-menu-item,
   .dropdown-menu ::slotted(*) {
     display: none;
     opacity: 0;
@@ -76,12 +80,14 @@ export const styles = css`
   }
 
   .dropdown-menu .dropdown-item:hover,
+  .dropdown-menu azl-dropdown-menu-item:hover,
   .dropdown-menu ::slotted(*:hover) {
-    background-color: rgba(40, 39, 39, 0.1);
+    background-color: var(--dropdown-menu-item-hover-color, rgba(40, 39, 39, 0.1));
   }
 
   .scaleY,
   .scaleY .dropdown-item,
+  .scaleY azl-dropdown-menu-item,
   .scaleY ::slotted(*) {
     animation: scaleY 300ms ease-in-out forwards;
     transform-origin: top center;
@@ -89,6 +95,7 @@ export const styles = css`
 
   .translateX.left,
   .translateX.left .dropdown-item,
+  .translateX.left azl-dropdown-menu-item,
   .translateX.left ::slotted(*) {
     animation: translateToLeft 420ms 100ms ease-in-out forwards;
     transform-origin: top center;
@@ -96,6 +103,7 @@ export const styles = css`
 
   .translateX.right,
   .translateX.right .dropdown-item,
+  .translateX.right azl-dropdown-menu-item,
   .translateX.right ::slotted(*) {
     animation: translateToRight 420ms 100ms ease-in-out forwards;
     transform-origin: top center;
