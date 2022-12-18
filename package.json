@@ -1,11 +1,16 @@
 {
-  "name": "azl-dropdown",
-  "description": "Webcomponent azl-dropdown following open-wc recommendations",
+  "name": "@azlabs-wc/dropdown",
+  "description": "Dropdown web component based on lit element library",
   "license": "MIT",
   "author": "Azandrew Sidoine <azandrewdevelopper@gmail.com>",
   "version": "0.1.1",
   "main": "index.js",
   "module": "index.js",
+  "keywords": [
+    "lit-element",
+    "web component",
+    "dropdown"
+  ],
   "exports": {
     ".": "./index.js",
     "./azl-dropdown": "./azl-dropdown.js",
