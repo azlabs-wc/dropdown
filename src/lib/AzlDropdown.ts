@@ -76,12 +76,15 @@ export class AzlDropdown extends LitElement {
   }
 
   private setSelectedItem(value: any) {
-    this.selectedIndex = +value;
     if (this.items) {
+      this.selectedIndex = +value;
       this.selectedItem = this.items[this.selectedIndex];
       if (this.selectedItem) {
         this.dispatchEvent(
-          new SelectedChangeEvent('change', this.selectedItem)
+          new SelectedChangeEvent(
+            'change',
+            this.selectedItem ?? this.selectedIndex
+          )
         );
       }
     }

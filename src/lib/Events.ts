@@ -1,11 +1,11 @@
 /**
  * Selected value changes event type
  */
-export interface SelectedChangeEventType<T> extends CustomEvent {}
+export interface SelectedChangeEventType<T> extends CustomEvent<T> {}
 
 /**
  * Event dispatched when the selected value changes
- * 
+ *
  * @internal
  */
 export class SelectedChangeEvent<T extends any> extends CustomEvent<T> {
