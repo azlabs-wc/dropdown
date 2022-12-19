@@ -1,6 +1,7 @@
 import '@azlabs-wc/layouts/azl-hbox.js';
 import { LitElement, PropertyValueMap, TemplateResult, css, html } from 'lit';
 import { property } from 'lit/decorators/property.js';
+import { query } from 'lit/decorators/query.js';
 import { state } from 'lit/decorators/state.js';
 import { ClassInfo, classMap } from 'lit/directives/class-map.js';
 import { repeat } from 'lit/directives/repeat.js';
@@ -19,6 +20,9 @@ import { Animation, Orientation } from './types.js';
 
 export class AzlDropdown extends LitElement {
   // #region Component reactive properties
+  @query('#dropdown-toggle')
+  private headerElement!: HTMLElement;
+
   /**
    * @attr
    */
@@ -62,6 +66,15 @@ export class AzlDropdown extends LitElement {
   @property({ type: Number, attribute: 'selected' })
   @state()
   selectedItem!: any;
+
+  @state()
+  active: boolean = false;
+
+  /**
+   * @attr no-hover
+   */
+  @property({ type: Boolean, attribute: 'no-hover' })
+  noHover: boolean = false;
   // #endregion Component reactive properties
 
   static override get styles() {
@@ -73,6 +86,83 @@ export class AzlDropdown extends LitElement {
       translateZ,
       css``,
     ];
+  }
+
+  protected override willUpdate(
+    _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
+  ): void {
+    if (
+      _changedProperties.has('orientation') ||
+      _changedProperties.has('orientation')
+    ) {
+      // TODO: Change the orientation if required
+    }
+    super.willUpdate(_changedProperties);
+  }
+
+  override connectedCallback(): void {
+    if (window) {
+      window.addEventListener('click', this.onGlobalClick.bind(this));
+    }
+    super.connectedCallback();
+  }
+
+  override disconnectedCallback(): void {
+    if (window) {
+      window.removeEventListener('click', this.onGlobalClick.bind(this));
+    }
+    super.disconnectedCallback();
+  }
+
+  override render() {
+    const items =
+      typeof this.items === 'string'
+        ? this.items.split(',').filter(item => item.trim())
+        : this.items;
+    return html`
+      <div class="dropdown-container">
+        <div class="dropdown ${classMap(this.getCssClass())}">
+          <a
+            href="#"
+            id="dropdown-toggle"
+            @click=${this.onToggleDropdown}
+            class="dropdown-header"
+          >
+            ${AzlDropdown.createDropdownHeader(this.text)}
+          </a>
+          <div class="dropdown-menu${classMap(this.getMenuClass())}">
+            ${AzlDropdown.createDropdownMenu(
+              this.setSelectedItem.bind(this),
+              items ?? []
+            )}
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  private onGlobalClick(event: MouseEvent) {
+    // TODO: Handle global click on the window element
+    if (this.headerElement) {
+      const {
+        left: x,
+        top: y,
+        width,
+        height,
+      } = this.headerElement.getBoundingClientRect();
+      if (
+        !(
+          event.clientX >= x &&
+          event.clientX <= x + width &&
+          event.clientY >= y &&
+          event.clientY <= y + height
+        ) &&
+        this.active === true
+      ) {
+        this.active = !this.active;
+      }
+    }
+    event.stopPropagation();
   }
 
   private setSelectedItem(value: any) {
@@ -88,18 +178,6 @@ export class AzlDropdown extends LitElement {
         );
       }
     }
-  }
-
-  protected override willUpdate(
-    _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
-  ): void {
-    if (
-      _changedProperties.has('orientation') ||
-      _changedProperties.has('orientation')
-    ) {
-      // TODO: Change the orientation if required
-    }
-    super.willUpdate(_changedProperties);
   }
 
   private getMenuClass() {
@@ -119,6 +197,11 @@ export class AzlDropdown extends LitElement {
     for (const item of list.split(' ')) {
       cssClass = { ...cssClass, [item]: true };
     }
+    cssClass = {
+      ...cssClass,
+      active: this.noHover && this.active,
+      hover: !this.noHover,
+    };
     return cssClass;
   }
 
@@ -152,23 +235,11 @@ export class AzlDropdown extends LitElement {
       : html`<slot></slot>`;
   }
 
-  override render() {
-    const items =
-      typeof this.items === 'string'
-        ? this.items.split(',').filter(item => item.trim())
-        : this.items;
-    return html`
-      <div class="dropdown ${classMap(this.getCssClass())}">
-        <div class="dropdown-header">
-          ${AzlDropdown.createDropdownHeader(this.text)}
-        </div>
-        <div class="dropdown-menu${classMap(this.getMenuClass())}">
-          ${AzlDropdown.createDropdownMenu(
-            this.setSelectedItem.bind(this),
-            items ?? []
-          )}
-        </div>
-      </div>
-    `;
+  private onToggleDropdown(event: Event) {
+    if (this.noHover) {
+      this.active = !this.active;
+    }
+    event.preventDefault();
+    event.stopPropagation();
   }
 }

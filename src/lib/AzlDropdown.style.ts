@@ -1,22 +1,22 @@
 import { css } from 'lit';
 
 export const styles = css`
-  .dropdown {
-    padding: 1.2rem 0rem;
-    perspective: 1000px;
+  .dropdown-container {
     position: relative;
+  }
+  .dropdown {
+    padding: 0.7rem 0rem;
     display: block;
-    z-index: 0;
   }
 
   @media (max-device-width: 425px) {
     .dropdown {
-      padding: 1rem 1.3rem;
+      padding: 0.8rem 1.3rem;
     }
   }
   @media (max-width: 425px) {
     .dropdown {
-      padding: 1rem 1.3rem;
+      padding: 0.8rem 1.3rem;
     }
   }
 
@@ -30,21 +30,39 @@ export const styles = css`
       padding: 0.8rem 1rem;
     }
   }
+  .dropdown-header {
+    text-decoration: none;
+    background-color: inherit;
+  }
+  .dropdown-header:active,
+  .dropdown-header:link,
+  .dropdown-header:visited,
+  .dropdown-header:hover {
+    color: inherit;
+    text-decoration: none;
+  }
+
   .dropdown:hover {
     cursor: pointer;
   }
 
-  .dropdown:hover .dropdown-menu,
-  .dropdown:hover .dropdown-menu .dropdown-item,
-  .dropdown:hover .dropdown-menu azl-dropdown-menu-item,
-  .dropdown:hover .dropdown-menu ::slotted(*) {
+  .dropdown.hover:hover .dropdown-menu,
+  .dropdown.hover:hover .dropdown-menu .dropdown-item,
+  .dropdown.hover:hover .dropdown-menu azl-dropdown-menu-item,
+  .dropdown.hover:hover .dropdown-menu ::slotted(*),
+  .dropdown.active .dropdown-menu,
+  .dropdown.active .dropdown-menu .dropdown-item,
+  .dropdown.active .dropdown-menu azl-dropdown-menu-item,
+  .dropdown.active .dropdown-menu ::slotted(*) {
     display: block;
-    z-index: 100;
   }
 
-  .dropdown:hover .dropdown-menu ::slotted(*),
-  .dropdown:hover .dropdown-menu.scaleY ::slotted(*),
-  .dropdown:hover .dropdown-menu.translateX ::slotted(*) {
+  .dropdown.hover:hover .dropdown-menu ::slotted(*),
+  .dropdown.hover:hover .dropdown-menu.scaleY ::slotted(*),
+  .dropdown.hover:hover .dropdown-menu.translateX ::slotted(*),
+  .dropdown.active .dropdown-menu ::slotted(*),
+  .dropdown.active .dropdown-menu.scaleY ::slotted(*),
+  .dropdown.active .dropdown-menu.translateX ::slotted(*) {
     opacity: 1;
   }
 
@@ -52,14 +70,13 @@ export const styles = css`
     display: none;
     opacity: 0;
     position: absolute;
-    top: 70%;
     min-width: 320px;
     border: var(--dropdown-border-width, 0.05rem) solid
-      var(--dropdown-border-color, #eeeeee);
+      var(--dropdown-border-color, hsl(198deg, 0%, 80%));
     border-radius: var(--dropdown-border-radius, 0.156rem);
     box-shadow: 0.5px 0px 0px 0px var(--dropdown-box-shadow-color, #f3f3f3);
     background-color: var(--dropdown-bg-color, #fff);
-    z-index: 100;
+    z-index: 1050;
   }
 
   .dropdown-menu.left {
@@ -75,7 +92,9 @@ export const styles = css`
   .dropdown-menu ::slotted(*) {
     display: none;
     opacity: 0;
-    padding: 8px 14px;
+    padding: 0.5rem;
+    height: auto;
+    line-height: inherit;
     list-style: none;
   }
 
@@ -110,12 +129,6 @@ export const styles = css`
   .translateX.right ::slotted(*) {
     animation: translateToRight 420ms 100ms ease-in-out forwards;
     transform-origin: top center;
-  }
-
-  .dropdown-header {
-    display: flex;
-    flex: 1 auto;
-    flex-flow: column nowrap;
   }
 
   /* Icon and & svg styling */
