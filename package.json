@@ -3,7 +3,7 @@
   "description": "Dropdown web component based on lit element library",
   "license": "MIT",
   "author": "Azandrew Sidoine <azandrewdevelopper@gmail.com>",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "main": "index.js",
   "module": "index.js",
   "keywords": [
