@@ -33,7 +33,7 @@
     "postbuild": "npm-prepare-dist -f README.md -f LICENSE -s test -s test:watch -s storybook -s storybook:build -s postbuild"
   },
   "dependencies": {
-    "@azlabs-wc/layouts": "^0.1.14",
+    "@azlabs-wc/layouts": "^0.1.15",
     "lit": "^2.4.0"
   },
   "devDependencies": {
