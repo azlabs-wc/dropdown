@@ -12,10 +12,6 @@ jobs:
   build:
     name: Build, lint, and test on Node ${{ matrix.node }} and ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
-    permissions:
-      contents: read
-      packages: write
-      repository-projects: read
     strategy:
       matrix:
         node: ['14.x', '16.x', '18.x']
@@ -44,5 +40,5 @@ jobs:
         run: npm run lint
 
     env:
-      NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-      # NODE_AUTH_TOKEN : ${{ secrets.NODE_GITHUB_ACCESS_TOKEN }}
+      # NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      NODE_AUTH_TOKEN: ${{ secrets.NODE_GITHUB_ACCESS_TOKEN }}
