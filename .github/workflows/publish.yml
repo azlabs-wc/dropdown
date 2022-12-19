@@ -30,6 +30,8 @@ jobs:
         uses: bahmutov/npm-install@v1
         with:
           useLockFile: false
+          registry-url: https://npm.pkg.github.com/
+          scope: '@azlabs-wc'
 
       - name: Build
         run: npm run build
@@ -39,4 +41,5 @@ jobs:
 
       - run: cd ./dist && npm publish --access public
     env:
-      NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      # NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      NODE_AUTH_TOKEN : ${{ secrets.NODE_GITHUB_ACCESS_TOKEN }}
