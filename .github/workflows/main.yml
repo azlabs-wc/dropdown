@@ -8,11 +8,14 @@ on:
     branches:
       - master
 
-permissions: write-all
-
 jobs:
   build:
     name: Build, lint, and test on Node ${{ matrix.node }} and ${{ matrix.os }}
+
+    permissions:
+      contents: read
+      packages: write
+      repository-projects: read
 
     runs-on: ${{ matrix.os }}
     strategy:
@@ -28,6 +31,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
+          registry-url: https://npm.pkg.github.com/
+          scope: '@azlabs-wc'
 
       - name: Check npm version
         run: npm -v
@@ -36,12 +41,10 @@ jobs:
         uses: bahmutov/npm-install@v1
         with:
           useLockFile: false
-          registry-url: https://npm.pkg.github.com/
-          scope: '@azlabs-wc'
 
       - name: Lint
         run: npm run lint
 
     env:
-      # NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-      NODE_AUTH_TOKEN : ${{ secrets.NODE_GITHUB_ACCESS_TOKEN }}
+      NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      # NODE_AUTH_TOKEN : ${{ secrets.NODE_GITHUB_ACCESS_TOKEN }}
