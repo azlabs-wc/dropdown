@@ -11,13 +11,11 @@ on:
 jobs:
   build:
     name: Build, lint, and test on Node ${{ matrix.node }} and ${{ matrix.os }}
-
+    runs-on: ${{ matrix.os }}
     permissions:
       contents: read
       packages: write
       repository-projects: read
-
-    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         node: ['14.x', '16.x', '18.x']
