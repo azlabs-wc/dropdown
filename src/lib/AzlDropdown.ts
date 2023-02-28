@@ -1,5 +1,5 @@
 import '@azlabs-wc/layouts/azl-hbox.js';
-import { LitElement, PropertyValueMap, TemplateResult, css, html } from 'lit';
+import { css, html, LitElement, PropertyValueMap, TemplateResult } from 'lit';
 import { property } from 'lit/decorators/property.js';
 import { query } from 'lit/decorators/query.js';
 import { state } from 'lit/decorators/state.js';
@@ -14,8 +14,8 @@ import {
 } from './AzlDropdown.animation.style.js';
 import { styles as defaultStyles } from './AzlDropdown.style.js';
 import { SelectedChangeEvent } from './Events.js';
-import { chevronIcon } from './Icon.js';
 import { createDropDownMenuItemIterator } from './helpers.js';
+import { chevronIcon } from './Icon.js';
 import { Animation, Orientation } from './types.js';
 
 export class AzlDropdown extends LitElement {
@@ -208,7 +208,9 @@ export class AzlDropdown extends LitElement {
   private static createDropdownHeader(text?: string) {
     return text
       ? html`<azl-hbox align-items="flex-start"
-          >${text} ${chevronIcon(16, 16)}</azl-hbox
+          ><span class="dropdown-text"
+            >${text} ${chevronIcon(16, 16)}</span
+          ></azl-hbox
         >`
       : html`<slot name="dropdown-button"></slot>
           <slot name="dropdown-icon"></slot>`;

@@ -42,6 +42,11 @@ export const styles = css`
     text-decoration: none;
   }
 
+  .dropdown-text,
+  ::slotted(dropdown-button) {
+    transition: all 2000ms ease-in;
+  }
+
   .dropdown:hover {
     cursor: pointer;
   }
