@@ -88,11 +88,10 @@ export const styles = css`
   }
 
   .dropdown-menu .dropdown-item,
-  .dropdown-menu azl-dropdown-menu-item,
-  .dropdown-menu ::slotted(*) {
+  .dropdown-menu azl-dropdown-menu-item {
+    padding: var(--dropdown-menu-item-padding, 0.5rem);
     display: none;
     opacity: 0;
-    padding: 0.5rem;
     height: auto;
     line-height: inherit;
     list-style: none;
