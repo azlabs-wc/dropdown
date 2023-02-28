@@ -5,29 +5,29 @@ export const styles = css`
     position: relative;
   }
   .dropdown {
-    padding: 0.7rem 0rem;
+    padding-bottom: var(--dropdown-padding-bottom, 0.7rem);
     display: block;
   }
 
   @media (max-device-width: 425px) {
     .dropdown {
-      padding: 0.8rem 1.3rem;
+      padding-bottom: var(--dropdown-padding-bottom, 0.8rem);
     }
   }
   @media (max-width: 425px) {
     .dropdown {
-      padding: 0.8rem 1.3rem;
+      padding-bottom: var(--dropdown-padding-bottom, 0.8rem);
     }
   }
 
   @media (max-device-width: 320px) {
     .dropdown {
-      padding: 0.8rem 1rem;
+      padding-bottom: var(--dropdown-padding-bottom, 0.8rem);
     }
   }
   @media (max-width: 320px) {
     .dropdown {
-      padding: 0.8rem 1rem;
+      padding-bottom: var(--dropdown-padding-bottom, 0.8rem);
     }
   }
   .dropdown-header {
@@ -70,7 +70,7 @@ export const styles = css`
     display: none;
     opacity: 0;
     position: absolute;
-    min-width: 320px;
+    min-width: var(--dropdown-min-width, 240px);
     border: var(--dropdown-border-width, 0.05rem) solid
       var(--dropdown-border-color, hsl(198deg, 0%, 80%));
     border-radius: var(--dropdown-border-radius, 0.156rem);
