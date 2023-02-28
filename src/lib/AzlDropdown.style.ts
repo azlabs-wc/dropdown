@@ -4,32 +4,12 @@ export const styles = css`
   .dropdown-container {
     position: relative;
   }
+
   .dropdown {
     padding-bottom: var(--dropdown-padding-bottom, 0.7rem);
     display: block;
   }
 
-  @media (max-device-width: 425px) {
-    .dropdown {
-      padding-bottom: var(--dropdown-padding-bottom, 0.8rem);
-    }
-  }
-  @media (max-width: 425px) {
-    .dropdown {
-      padding-bottom: var(--dropdown-padding-bottom, 0.8rem);
-    }
-  }
-
-  @media (max-device-width: 320px) {
-    .dropdown {
-      padding-bottom: var(--dropdown-padding-bottom, 0.8rem);
-    }
-  }
-  @media (max-width: 320px) {
-    .dropdown {
-      padding-bottom: var(--dropdown-padding-bottom, 0.8rem);
-    }
-  }
   .dropdown-header {
     text-decoration: none;
     background-color: inherit;
