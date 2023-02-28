@@ -99,8 +99,7 @@ export const styles = css`
   }
 
   .dropdown-menu .dropdown-item:hover,
-  .dropdown-menu azl-dropdown-menu-item:hover,
-  .dropdown-menu ::slotted(*:hover) {
+  .dropdown-menu azl-dropdown-menu-item:hover {
     background-color: var(
       --dropdown-menu-item-hover-color,
       rgba(40, 39, 39, 0.1)
