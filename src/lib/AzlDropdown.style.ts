@@ -24,30 +24,49 @@ export const styles = css`
 
   .dropdown-text,
   ::slotted(dropdown-button) {
-    transition: all 2000ms ease-in;
+    border-bottom: var(--dropdown-button-border-bottom-width, 0px) solid
+      var(--dropdown-button-border-color, hsl(198deg, 0%, 80%));
+    border-top: var(--dropdown-button-border-top-width, 0px) solid
+      var(--dropdown-button-border-color, hsl(198deg, 0%, 80%));
+    border-left: var(--dropdown-button-border-left-width, 0px) solid
+      var(--dropdown-button-border-color, hsl(198deg, 0%, 80%));
+    border-right: var(--dropdown-button-border-right-width, 0px) solid
+      var(--dropdown-button-border-color, hsl(198deg, 0%, 80%));
+    line-height: var(--dropdown-button-line-height, 1.5rem);
+    border-radius: var(--dropdown-button-border-radius, 0px);
+    padding: var(--dropdown-button-padding, 0px);
+    background-color: var(--dropdown-button-bg-color, inherit);
+    color: var(--dropdown-button-color, inherit);
+    font-weight: var(--dropdown-button-font-weight, inherit);
+    font-size: var(--dropdown-button-font-size, inherit);
   }
 
   .dropdown:hover {
     cursor: pointer;
   }
 
-  .dropdown.hover:hover .dropdown-menu,
-  .dropdown.hover:hover .dropdown-menu .dropdown-item,
-  .dropdown.hover:hover .dropdown-menu azl-dropdown-menu-item,
-  .dropdown.hover:hover .dropdown-menu ::slotted(*),
-  .dropdown.active .dropdown-menu,
-  .dropdown.active .dropdown-menu .dropdown-item,
-  .dropdown.active .dropdown-menu azl-dropdown-menu-item,
-  .dropdown.active .dropdown-menu ::slotted(*) {
+  .dropdown.disabled:hover,
+  .dropdown.disabled .dropdown-header:hover {
+    cursor: not-allowed;
+  }
+
+  .dropdown:not(.disabled).hover:hover .dropdown-menu,
+  .dropdown:not(.disabled).hover:hover .dropdown-menu .dropdown-item,
+  .dropdown:not(.disabled).hover:hover .dropdown-menu azl-dropdown-menu-item,
+  .dropdown:not(.disabled).hover:hover .dropdown-menu ::slotted(*),
+  .dropdown:not(.disabled).active .dropdown-menu,
+  .dropdown:not(.disabled).active .dropdown-menu .dropdown-item,
+  .dropdown:not(.disabled).active .dropdown-menu azl-dropdown-menu-item,
+  .dropdown:not(.disabled).active .dropdown-menu ::slotted(*) {
     display: block;
   }
 
-  .dropdown.hover:hover .dropdown-menu ::slotted(*),
-  .dropdown.hover:hover .dropdown-menu.scaleY ::slotted(*),
-  .dropdown.hover:hover .dropdown-menu.translateX ::slotted(*),
-  .dropdown.active .dropdown-menu ::slotted(*),
-  .dropdown.active .dropdown-menu.scaleY ::slotted(*),
-  .dropdown.active .dropdown-menu.translateX ::slotted(*) {
+  .dropdown:not(.disabled).hover:hover .dropdown-menu ::slotted(*),
+  .dropdown:not(.disabled).hover:hover .dropdown-menu.scaleY ::slotted(*),
+  .dropdown:not(.disabled).hover:hover .dropdown-menu.translateX ::slotted(*),
+  .dropdown:not(.disabled).active .dropdown-menu ::slotted(*),
+  .dropdown:not(.disabled).active .dropdown-menu.scaleY ::slotted(*),
+  .dropdown:not(.disabled).active .dropdown-menu.translateX ::slotted(*) {
     opacity: 1;
   }
 

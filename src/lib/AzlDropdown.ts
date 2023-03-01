@@ -75,6 +75,9 @@ export class AzlDropdown extends LitElement {
    */
   @property({ type: Boolean, attribute: 'no-hover' })
   noHover: boolean = false;
+
+  @property({ type: Boolean, attribute: 'disabled' })
+  disabled: boolean = false;
   // #endregion Component reactive properties
 
   static override get styles() {
@@ -121,7 +124,12 @@ export class AzlDropdown extends LitElement {
         : this.items;
     return html`
       <div class="dropdown-container">
-        <div class="dropdown ${classMap(this.getCssClass())}">
+        <div
+          class="dropdown ${classMap(this.getCssClass())}"
+          aria-label=${this.disabled
+            ? 'dropdown disabled'
+            : 'dropdown not disabled'}
+        >
           <a
             href="#"
             id="dropdown-toggle"
@@ -200,6 +208,7 @@ export class AzlDropdown extends LitElement {
     cssClass = {
       ...cssClass,
       active: this.noHover && this.active,
+      disabled: this.disabled,
       hover: !this.noHover,
     };
     return cssClass;
@@ -238,7 +247,7 @@ export class AzlDropdown extends LitElement {
   }
 
   private onToggleDropdown(event: Event) {
-    if (this.noHover) {
+    if (this.noHover && !this.disabled) {
       this.active = !this.active;
     }
     event.preventDefault();

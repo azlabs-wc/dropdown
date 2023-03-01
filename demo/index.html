@@ -7,9 +7,22 @@
     *,
     body,
     :host {
-      font-size: calc(10px + 2vmin);
+      font-size: 16px;
       color: #1a2b42;
       font-family: Arial, Helvetica, sans-serif;
+    }
+
+    :root {
+      --dropdown-button-border-bottom-width: 1px;
+      --dropdown-button-border-left-width: 1px;
+      --dropdown-button-border-right-width: 1px;
+      --dropdown-button-border-top-width: 1px;
+      --dropdown-button-line-height: 1.5rem;
+      --dropdown-button-border-radius: .1rem;
+      --dropdown-button-padding: .2rem .4rem;
+      --dropdown-button-bg-color: #ccc;
+      --dropdown-button-color: #000;
+      --dropdown-button-font-weight: 400;
     }
 
     body {
@@ -47,37 +60,22 @@
   <script type="module">
     import { html, render } from 'lit';
     import '../dist/azl-dropdown.js';
-    import { chevronIcon } from '../dist/lib/Icon.js';
 
     render(
       html`
-          <azl-dropdown no-hover orientation="left" .items=${["Payer avec TMoney", "Payer avec MoovMoney", "Payer avec OrangeMoney"]}>
-            <h4 class="title" slot="dropdown-button">
-              Payer avec CorisMoney
-              ${chevronIcon(20, 20)}
-            </h4>
+          <azl-dropdown .text=${'Payer avec TMoney'} ?disabled=${true} no-hover orientation="left" .items=${["Payer avec TMoney", "Payer avec MoovMoney", "Payer avec OrangeMoney"]}>
           </azl-dropdown>
 
-
-          <azl-dropdown orientation="right" .items=${["Payer avec TMoney", "Payer avec MoovMoney", "Payer avec OrangeMoney"]}>
-            <h4 class="title" slot="dropdown-button">
-              Payer avec CorisMoney
-              ${chevronIcon(20, 20)}
-            </h4>
+          <azl-dropdown .text=${'Payer avec OrangeMoney'} no-hover orientation="left" .items=${["Payer avec TMoney", "Payer avec MoovMoney", "Payer avec OrangeMoney"]}>
           </azl-dropdown>
 
-          <azl-dropdown animation="translateX" orientation="left" .items=${["Payer avec TMoney", "Payer avec MoovMoney", "Payer avec OrangeMoney"]}>
-            <h4 class="title" slot="dropdown-button">
-              Payer avec CorisMoney
-              ${chevronIcon(20, 20)}
-            </h4>
+          <azl-dropdown .text=${'Payer avec Flooz'} disabled orientation="right" .items=${["Payer avec TMoney", "Payer avec MoovMoney", "Payer avec OrangeMoney"]}>
           </azl-dropdown>
 
-          <azl-dropdown no-hover animation="translateX" orientation="right" .items=${["Payer avec TMoney", "Payer avec MoovMoney", "Payer avec OrangeMoney"]}>
-            <h4 class="title" slot="dropdown-button">
-              Payer avec CorisMoney
-              ${chevronIcon(20, 20)}
-            </h4>
+          <azl-dropdown .text=${'Payer avec Visa'} animation="translateX" orientation="left" .items=${["Payer avec TMoney", "Payer avec MoovMoney", "Payer avec OrangeMoney"]}>
+          </azl-dropdown>
+
+          <azl-dropdown .text=${'Payer avec CorisMoney'} no-hover animation="translateX" orientation="right" .items=${["Payer avec TMoney", "Payer avec MoovMoney", "Payer avec OrangeMoney"]}>
           </azl-dropdown>
       `,
       document.querySelector('#demo')
